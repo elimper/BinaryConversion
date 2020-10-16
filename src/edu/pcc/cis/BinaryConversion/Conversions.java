@@ -17,8 +17,7 @@ public class Conversions {
         int decimal = 0;
         int[] values = {128, 64, 32, 16, 8, 4, 2, 1};
 
-        //catch cases where string is over one byte
-        if(binary.length() > 8){
+        if(!isByteString(binary)){
             return -1;
         }
 
@@ -28,5 +27,37 @@ public class Conversions {
             }
         }
         return decimal;
+    }
+
+    /**
+     * Checks if a given string is a byte value.
+     * @param binary a string of 0 and 1
+     * @return true if the string meets the criteria
+     */
+    private boolean isByteString(String binary)
+    {
+        boolean testLength;
+        //catch cases where string is not 8 digits
+        if(binary.length() == 8) {
+            testLength = true ;
+        }
+        else{
+            return false;
+        }
+        boolean testDigits;
+        int checksum = 0;
+        //checks if each digit is a 0 or 1
+        for (int i = 0; i <8 ; i ++) {
+            if (binary.charAt(i) == '0' || binary.charAt(i) == '1') {
+                checksum++;
+            }
+        }
+        if (checksum == 8){
+            testDigits = true;
+        }
+        else{
+            return false;
+        }
+        return testDigits && testLength;
     }
 }
