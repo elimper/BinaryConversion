@@ -17,6 +17,7 @@ public class SystemConversion {
         String input = sc.nextLine();
         int ans = binaryConversion.binaryToDecimal(input);
         System.out.println(input + " in decimal is: " + ans);
-
+        String byteStr = binaryConversion.convertToBinary(ans);
+        System.out.println(ans + " in binary is: " + byteStr);
     }
 }
